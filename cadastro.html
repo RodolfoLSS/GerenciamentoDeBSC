@@ -9,7 +9,7 @@
     <meta name="description" content="Gerenciamento de BSC">
     <meta name="author" content="Rodolfo Saldanha">
 
-    <title>BSC</title>
+    <title>Gerenciamento de empresas</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,56 +35,30 @@
 
 <body id="page-top" class="index">
 
-    <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <!-- Edit empresa -->
+    <section id="cadastro" class="bg-light-gray">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <figure id="logo">
-                    <img src="img/logos/GAIALogo.png">
-                </figure>
-            </div>
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Bem-vindo</div>
-                <div class="intro-heading">Gerenciamento de BSC</div>
-                <a href="/cadastro.html" class="page-scroll btn btn-xl">Cadastro de empresas</a>
-                <a href="#" class="page-scroll btn btn-xl">Diagramas</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Team Section -->
-    <section id="team" class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Desenvolvedor</h2>
+            <form action="cadastro.php" method="post">
+                <table border="0">
+                    <tr> 
+                        <td>Empresa</td>
+                        <td align=center><input type="text" name="company"/></td>
+                    </tr>
+                    <tr> 
+                        <td>Perspectivas</td>
+                        <td align=center><input type="text" name="perspectives"/></td>
+                    </tr>
+                    <tr> 
+                        <td>Objetivos</td>
+                        <td align=center><input type="text" name="goals"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"><input type="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
+                    </tr>
                 </div>
-            </div>
-            <div class="team-member">
-                <img src="img/team/1.jpg" class="img-responsive img-circle" alt="">
-                <h4>Rodolfo Saldanha</h4>
-                <ul class="list-inline social-buttons">
-                    <li><a href="https://github.com/RodolfoLSS"><i class="fa fa-github"></i></a>
-                    </li>
-                    <li><a href="https://www.facebook.com/rodolfo.saldanha.3"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="https://www.linkedin.com/in/rodolfo-luis-dos-santos-saldanha-46a05185/"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+            </section>
+        </table>
+    </form>
 
     <footer>
         <div class="container">
