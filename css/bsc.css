@@ -1,0 +1,19 @@
+tr {
+    padding:15px;
+}
+td {
+    padding:5px;
+}
+#right{
+    width:auto;
+    float:right;
+    text-indent:left;
+}
+#left{
+    text-indent:left;
+    width:auto;
+    float: left;
+}
+#lista th{
+    text-align:left;
+}

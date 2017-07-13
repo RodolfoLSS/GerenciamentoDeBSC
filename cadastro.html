@@ -24,6 +24,8 @@
     <!-- Theme CSS -->
     <link href="css/agency.min.css" rel="stylesheet">
 
+    <link href="css/bsc.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,31 +36,64 @@
 </head>
 
 <body id="page-top" class="index">
+    <header>
+        <div class="container">
+            <h1 class="section-heading">Empresas</h1>
+        </div>
+    </header>
 
     <!-- Edit empresa -->
     <section id="cadastro" class="bg-light-gray">
         <div class="container">
-            <form action="cadastro.php" method="post">
-                <table border="0">
+            <form action="cadastro.php" method="post" id="left">
+                <table border="0"> 
+                    <tr>
+                        <td><h2 class="section-heading">Cadastro</h2></td>
+                    </tr>
                     <tr> 
                         <td>Empresa</td>
-                        <td align=center><input type="text" name="company"/></td>
+                        <td align=center><input type="text" required name="company"/></td>
                     </tr>
                     <tr> 
                         <td>Perspectivas</td>
-                        <td align=center><input type="text" name="perspectives"/></td>
+                        <td align=center><input type="text" required name="perspectives"/></td>
                     </tr>
                     <tr> 
-                        <td>Objetivos</td>
-                        <td align=center><input type="text" name="goals"/></td>
+                        <td><h3>Objetivo Estratégico</h3></td>
                     </tr>
+                    <tr> 
+                        <td>Descrição</td>
+                        <td align=center><input type="text" required name="description"/></td>
+                    </tr> 
+                    <tr> 
+                        <td>Metas</td>
+                        <td align=center><input type="text" required name="goals"/></td>
+                    </tr> 
+                    <tr> 
+                        <td>Indicadores</td>
+                        <td align=center><input type="text" required name="indicators"/></td>
+                    </tr> 
+                    <tr> 
+                        <td>Iniciativas</td>
+                        <td align=center><input type="text" required name="iniciatives"/></td>
+                    </tr> 
                     <tr>
                         <td colspan="2" align="center"><input type="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
                     </tr>
-                </div>
-            </section>
-        </table>
-    </form>
+                </table>
+            </form>
+            <form action="cadastro.php" method="post" id="right">
+                <table border="0" id="lista"> 
+                    <th>
+                        <td><h2 class="section-heading">Lista de empresas</h2></td>
+                    </th>
+                    <tr> 
+                        <td>Empresa</td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
