@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<style>
+			.app{
+				width: 64px;
+				height: 64px;
+				background-image: url(https://meetu.com.br/media/meetu.jpg);
+				background-size: 100% 100%;
+				border-radius: 16px;
+				box-shadow: 0px 3px 20px -10px;
+				cursor: pointer;
+				background-color: black;
+			}
+
+			td{
+				width: 64px;
+				height: 64px;
+				position: relative;
+			}
+		</style>
+		<script>
+			function allowDrop(event) {
+			    event.preventDefault();
+			}
+
+			function drag(event) {
+			    event.dataTransfer.setData("text", event.target.id);
+			}
+
+			function drop(event) {
+			    event.preventDefault();
+			    var data = event.dataTransfer.getData("text");
+			    event.target.appendChild(document.getElementById(data));
+			}
+		</script>
+	</head>
+	<body>
+		<table border="1">
+			<tr>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)">
+					<div id="app" class="app" draggable="true" ondragstart="drag(event)"></div>
+				</td>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+			</tr>
+			<tr>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+				<td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
