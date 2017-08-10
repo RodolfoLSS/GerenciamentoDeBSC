@@ -45,18 +45,14 @@
     <!-- Edit empresa -->
     <section id="cadastro" class="bg-light-gray">
         <div class="container">
-            <form action="cadastro.php" method="post" id="left">
+            <form action="../cadastroadded.php" method="post" id="left">
                 <table border="0"> 
                     <tr>
                         <td><h2 class="section-heading">Cadastro</h2></td>
                     </tr>
                     <tr> 
                         <td>Empresa</td>
-                        <td align=center><input type="text" required name="company"/></td>
-                    </tr>
-                    <tr> 
-                        <td>Perspectivas</td>
-                        <td align=center><input type="text" required name="perspectives"/></td>
+                        <td align=center><input type="text" required name="name"/></td>
                     </tr>
                     <tr> 
                         <td>Missão</td>
@@ -75,7 +71,7 @@
                     </tr> 
                     <tr> 
                         <td>Meta</td>
-                        <td align=center><input type="text" required name="goals"/></td>
+                        <td align=center><input type="text" required name="meta"/></td>
                     </tr> 
                     <tr> 
                         <td>Indicador</td>
@@ -83,10 +79,10 @@
                     </tr> 
                     <tr> 
                         <td>Iniciativas</td>
-                        <td align=center><input type="text" required name="iniciatives"/></td>
+                        <td align=center><input type="text" required name="iniciative"/></td>
                     </tr> 
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
+                        <td colspan="2" align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
                     </tr>
                 </table>
             </form>

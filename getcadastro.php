@@ -12,7 +12,7 @@ if($response){
 		$row['id']. '</td><td align="left">'.
 		$row['missao']. '</td><td align="left">'.
 		$row['visao']. '</td><td align="left">'.
-		$row['nome']. '</td><td align="left">';
+		$row['nome']. '</td><td align="left"></tr>';
 	}
 }
 else{
