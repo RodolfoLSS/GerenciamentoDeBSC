@@ -97,9 +97,12 @@ if(isset($_POST['submit'])){
     if(empty($data_missing)){
         require_once('/Library/WebServer/Documents/mysqli_connect.php');
 
-        $query = "INSERT INTO empresa (missao, visao, nome) VALUES (?, ?, ?)";
+        $query_insert_empresa = "INSERT INTO empresa (missao, visao, nome) VALUES (?, ?, ?)";
+        $query_select_key = "SELECT empresa_id FROM empresa WHERE nome = '" . $nome . "'";
+        //$query_insert_iniciativa = "INSERT INTO iniciativa (descricao, fk_empresa) VALUES (?, ?)";
+        $query_insert_obj = "INSERT INTO empresa (missao, visao, nome) VALUES (?, ?, ?)";
 
-        $stmt = mysqli_prepare($db_connection, $query);
+        $stmt = mysqli_prepare($db_connection, $query_insert_empresa);
 
         mysqli_stmt_bind_param($stmt, "sss", $missao, $visao, $nome);
 
@@ -107,8 +110,21 @@ if(isset($_POST['submit'])){
 
         $affected_rows = mysqli_stmt_affected_rows($stmt);
 
-        // Cadastro realizado com sucesso
         if($affected_rows == 1){
+            //Procura pela chave da empresa
+            $response = @mysqli_query($db_connection, $query_select_key);
+            if($response){
+                $row = mysqli_fetch_array($response);
+                $key_empresa = $row['empresa_id'];
+            }
+            else{
+                echo '<script>';
+                echo 'alert("Erro ao achar chave!");';
+                echo 'window.location.href = "cadastro.html";';
+                echo '</script>';
+            }
+
+            // Cadastro realizado com sucesso
             echo '<script>';
             echo 'alert("Empresa cadastrada!");';
             echo 'window.location.href = "cadastro.html";';

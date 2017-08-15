@@ -41,31 +41,43 @@
             <h1 class="section-heading">Empresas Cadastradas</h1>
         </div>
     </header>
-<section id="cadastro" class="bg-light-gray">
-<?php
+<section id="lista" class="bg-light-gray">
+	<div class="container">
+		<?php
 
-require_once('/Library/WebServer/Documents/mysqli_connect.php');
+		require_once('/Library/WebServer/Documents/mysqli_connect.php');
 
-$query = "SELECT * FROM empresa";
+		$query = "SELECT * FROM empresa";
 
-$response = @mysqli_query($db_connection, $query);
+		$response = @mysqli_query($db_connection, $query);
 
-if($response){
-	while($row = mysqli_fetch_array($response)){
-		echo '<tr><td align="left">' .
-		$row['id']. ' </td><td align="left">'.
-		$row['missao']. ' </td><td align="left">'.
-		$row['visao']. ' </td><td align="left">'.
-		$row['nome']. ' </td><td align="left"></tr>';
-	}
-}
-else{
-	echo "Couldn't issue database query";
-	echo mysqli_error($db_connection);
-}
-mysqli_close($db_connection);
+		if($response){
+			echo '<table class="tLista" align="left"
+			cellspacing="5" cellpadding="8">
 
-?>
+			<td align="left"><b>Empresa</b></td>
+			<td colspan="2" align="left"><b>Objetivos Estratégicos</b></td>
+			<td align="left"><b>Iniciativas<b></td>
+
+			<tr><td align="left"></td>
+			<td align="left"><b>Id</b></td>
+			<td align="left"><b>Missao</b></td>
+			<td align="left"><b>Visao</b></td>';
+			while($row = mysqli_fetch_array($response)){
+				echo '<tr><td align="left">' .$row['nome'].'</td>
+				<td align="left">' .$row['empresa_id']. '</td>
+				<td align="left">'.$row['missao']. '</td>
+				<td align="left">'.$row['visao']. '</td></tr>';
+			}
+		}
+		else{
+			echo "Couldn't issue database query";
+			echo mysqli_error($db_connection);
+		}
+		mysqli_close($db_connection);
+
+		?>
+	</div>
 
 <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -83,6 +95,8 @@ mysqli_close($db_connection);
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
 </section>
+
+
 
 </body>
 

@@ -35,10 +35,10 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body class="normal">
     <header>
         <div class="container">
-            <h1 class="section-heading">Cadastro de Empresas</h1>
+            <h1>Cadastro de Empresas</h1>
         </div>
     </header>
 
@@ -82,7 +82,7 @@
                     </tr>
                     <tr> 
                         <td>
-                            <input type="text" required name="iniciative[]"/>
+                            <input type="text" required name="iniciative"/>
                             <input type="button" value="Adicionar" onClick="adicionar()">
                             <div id="my_div"></div>
                         </td>
@@ -104,7 +104,7 @@
                 }
                 function adicionar(){
                     var i = 1;
-                    my_div.innerHTML = my_div.innerHTML +"<br><input type='text' name='iniciative[]'+ i><br>"
+                    my_div.innerHTML = my_div.innerHTML +"<br><input type='text' name='iniciative'+ i><br>"
                 }
             </script>
             </div>

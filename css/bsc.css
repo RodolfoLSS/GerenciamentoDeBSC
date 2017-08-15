@@ -20,3 +20,9 @@ td {
 #check{
     padding:15px;
 }
+#cadastro, #lista{
+    padding: 50px;
+}
+.tLista{
+    width: 100%;
+}
