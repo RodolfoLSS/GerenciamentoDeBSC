@@ -46,7 +46,7 @@
     <section id="cadastro" class="bg-light-gray">
         <div class="container">
             <form action="../cadastroadded.php" method="post" id="left">
-                <table border="0"> 
+                <table> 
                     <tr>
                         <td><h2 class="section-heading">Cadastro</h2></td>
                     </tr>
@@ -83,20 +83,21 @@
                     </tr> 
                     <tr>
                         <td colspan="2" align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
+                        <td colspan="2" align="center">
+                            <button class="page-scroll btn btn-xl" onclick="myFunction()">Lista de Empresas</button>
+                        </td>
                     </tr>
                 </table>
             </form>
-            <form action="cadastro.php" method="post" id="right">
-                <table border="0" id="lista"> 
-                    <th>
-                        <td><h2 class="section-heading">Lista de empresas</h2></td>
-                    </th>
-                    <tr> 
-                        <td>Empresa</td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+            <script>
+                function myFunction() {
+                    var x = screen.width/2 - 700/2;
+                    var y = screen.height/2 - 450/2;
+                    var myWindow = window.open("getcadastro.php", "_blank", "height=485,width=700,left="+x+",top="+y);
+                    myWindow.focus();
+                }
+            </script>
+            </div>
     </section>
 
     <footer>
