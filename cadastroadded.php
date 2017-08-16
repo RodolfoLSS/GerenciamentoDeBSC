@@ -95,27 +95,42 @@ if(isset($_POST['submit'])){
     //////////////////////////////// Insere no banco de dados //////////////////
     
     if(empty($data_missing)){
+
         require_once('/Library/WebServer/Documents/mysqli_connect.php');
 
         $query_insert_empresa = "INSERT INTO empresa (missao, visao, nome) VALUES (?, ?, ?)";
         $query_select_key = "SELECT empresa_id FROM empresa WHERE nome = '" . $nome . "'";
-        //$query_insert_iniciativa = "INSERT INTO iniciativa (descricao, fk_empresa) VALUES (?, ?)";
-        $query_insert_obj = "INSERT INTO empresa (missao, visao, nome) VALUES (?, ?, ?)";
-
+        $query_insert_iniciativa = "INSERT INTO iniciativa (descricao, fk_empresa) VALUES (?, ?)";
+        $query_insert_obj = "INSERT INTO objetivo_estrategico (descricao, fk_empresa, indicador, meta) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_prepare($db_connection, $query_insert_empresa);
-
         mysqli_stmt_bind_param($stmt, "sss", $missao, $visao, $nome);
-
         mysqli_stmt_execute($stmt);
-
         $affected_rows = mysqli_stmt_affected_rows($stmt);
 
         if($affected_rows == 1){
+
             //Procura pela chave da empresa
             $response = @mysqli_query($db_connection, $query_select_key);
+
             if($response){
+
                 $row = mysqli_fetch_array($response);
                 $key_empresa = $row['empresa_id'];
+
+                //Cadastro de objetivo estrategico
+                $stmt = mysqli_prepare($db_connection, $query_insert_obj);
+                mysqli_stmt_bind_param($stmt, "siss", $descricao, $key_empresa, $indicador, $meta);
+                mysqli_stmt_execute($stmt);
+                $affected_rows = mysqli_stmt_affected_rows($stmt);
+
+                if($affected_rows == 1){
+
+                    //Cadastro de iniciativa
+                    $stmt = mysqli_prepare($db_connection, $query_insert_iniciativa);
+                    mysqli_stmt_bind_param($stmt, "si", $iniciativa, $key_empresa);
+                    mysqli_stmt_execute($stmt);
+                    $affected_rows = mysqli_stmt_affected_rows($stmt);
+                }
             }
             else{
                 echo '<script>';

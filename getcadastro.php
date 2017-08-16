@@ -47,28 +47,46 @@
 
 		require_once('/Library/WebServer/Documents/mysqli_connect.php');
 
-		$query = "SELECT * FROM empresa";
+		$query = "SELECT nome, empresa_id FROM empresa";
 
 		$response = @mysqli_query($db_connection, $query);
 
 		if($response){
-			echo '<table class="tLista" align="left"
-			cellspacing="5" cellpadding="8">
+			echo '<table class="tLista" align="left">
 
-			<td align="left"><b>Empresa</b></td>
-			<td colspan="2" align="left"><b>Objetivos Estratégicos</b></td>
-			<td align="left"><b>Iniciativas<b></td>
+			<tr><td align="left"><h3><b>EMPRESA</b></h3></td>
+			<td colspan="3" align="left"><h3><b>OBJETIVOS ESTRATÉGICOS</b></h3></td>
+			<td align="left"><h3><b>INICIATIVAS<b></h3></td></tr>
 
 			<tr><td align="left"></td>
-			<td align="left"><b>Id</b></td>
-			<td align="left"><b>Missao</b></td>
-			<td align="left"><b>Visao</b></td>';
+			<td align="left"><h5><b>Descrição</b></h5></td>
+			<td align="left"><h5><b>Meta</b></h5></td>
+			<td align="left"><h5><b>Indicador</b></h5></td>
+			<td align="left"></td></tr>';
 			while($row = mysqli_fetch_array($response)){
-				echo '<tr><td align="left">' .$row['nome'].'</td>
-				<td align="left">' .$row['empresa_id']. '</td>
-				<td align="left">'.$row['missao']. '</td>
-				<td align="left">'.$row['visao']. '</td></tr>';
+				$fk_empresa = $row['empresa_id'];
+
+				$query2 = "SELECT * FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
+
+				$query3 = "SELECT * FROM iniciativa WHERE fk_empresa = ".$fk_empresa;
+
+				$response2 = @mysqli_query($db_connection, $query2);
+
+				$response3 = @mysqli_query($db_connection, $query3);
+
+				echo '<tr><td align="left">' .$row['nome'].'</td>';
+				while($linha = mysqli_fetch_array($response2)){
+					echo '<td align="left">'.$linha['descricao']. '</td>
+					<td align="left">'.$linha['meta']. '</td>
+					<td align="left">'.$linha['indicador']. '</td>';
+				}
+				while($linha = mysqli_fetch_array($response3)){
+					echo '<td align="left">'.$linha['descricao']. '</td>';
+				}
+				echo '<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction()">Iniciativa</button></td>
+				<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction()">OBJETIVO</button></td></tr>';
 			}
+
 		}
 		else{
 			echo "Couldn't issue database query";
@@ -78,7 +96,14 @@
 
 		?>
 	</div>
-
+	<script>
+        function myFunction() {
+            var x = screen.width/2 - 700/2;
+            var y = screen.height/2 - 450/2;
+            var myWindow = window.open("getcadastro.php", "_blank", "height=485,width=700,left="+x+",top="+y);
+            myWindow.focus();
+        }
+    </script>
 <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 

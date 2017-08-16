@@ -78,19 +78,20 @@
                         <td align=center><input type="text" required name="indicator"/></td>
                     </tr> 
                     <tr> 
-                        <td><h3>Iniciativa(s)</h3></td>
+                        <td><h3>Iniciativa</h3></td>
                     </tr>
                     <tr> 
                         <td>
-                            <input type="text" required name="iniciative"/>
+                            <input type="text" required name="iniciative"/><!--
                             <input type="button" value="Adicionar" onClick="adicionar()">
-                            <div id="my_div"></div>
+                            <div id="my_div"></div>-->
                         </td>
                     </tr> 
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
-                        <td colspan="2" align="center">
-                            <button class="page-scroll btn btn-xl" onclick="myFunction()">Lista de Empresas</button>
+                        <td align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
+                        <td align="center">
+                            <input type="button" value="Lista de Empresas" class="page-scroll btn btn-xl" onclick="window.location.href='getcadastro.php';"/>
+                            <!--<button class="page-scroll btn btn-xl" onclick="myFunction()">Lista de Empresas</button>-->
                         </td>
                     </tr>
                 </table>
@@ -101,11 +102,11 @@
                     var y = screen.height/2 - 450/2;
                     var myWindow = window.open("getcadastro.php", "_blank", "height=485,width=700,left="+x+",top="+y);
                     myWindow.focus();
-                }
+                }/*
                 function adicionar(){
                     var i = 1;
-                    my_div.innerHTML = my_div.innerHTML +"<br><input type='text' name='iniciative'+ i><br>"
-                }
+                    my_div.innerHTML = my_div.innerHTML +"<br><input type='text' name='iniciative[]'+ i><br>"
+                }*/
             </script>
             </div>
     </section>

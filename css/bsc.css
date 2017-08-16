@@ -23,6 +23,17 @@ td {
 #cadastro, #lista{
     padding: 50px;
 }
-.tLista{
-    width: 100%;
+.btn-p{
+  color: white;
+  background-color: #fed136;
+  border-color: #fed136;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 10px 20px;
+}
+.tLista td{
+    padding: 10px;
 }
