@@ -32,78 +32,66 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <style>
+            .app{
+                width: 64px;
+                height: 64px;
+                background-image: url(https://meetu.com.br/media/meetu.jpg);
+                background-size: 100% 100%;
+                border-radius: 16px;
+                box-shadow: 0px 3px 20px -10px;
+                cursor: pointer;
+                background-color: black;
+            }
+
+            td{
+                width: 400px;
+                height: 200px;
+                position: relative;
+            }
+        </style>
+        <script>
+            function allowDrop(event) {
+                event.preventDefault();
+            }
+
+            function drag(event) {
+                event.dataTransfer.setData("text", event.target.id);
+            }
+
+            function drop(event) {
+                event.preventDefault();
+                var data = event.dataTransfer.getData("text");
+                event.target.appendChild(document.getElementById(data));
+            }
+        </script>
 
 </head>
 
 <body id="page-top" class="index">
     <header>
         <div class="container">
-            <h1 class="section-heading">Empresas Cadastradas</h1>
+            <h1 class="section-heading">Diagrama</h1>
         </div>
     </header>
 <section id="lista" class="bg-light-gray">
-	<div class="container">
-		<?php
-
-		require_once('/Library/WebServer/Documents/mysqli_connect.php');
-
-		$query = "SELECT nome, empresa_id FROM empresa";
-
-		$response = @mysqli_query($db_connection, $query);
-
-		if($response){
-			echo '<table class="tLista" align="left">
-
-			<tr><td align="left"><h3><b>EMPRESA</b></h3></td>
-			<td colspan="3" align="left"><h3><b>OBJETIVOS ESTRATÉGICOS</b></h3></td>
-			<td align="left"><h3><b>INICIATIVAS<b></h3></td></tr>
-
-			<tr><td align="left"></td>
-			<td align="left"><h5><b>Descrição</b></h5></td>
-			<td align="left"><h5><b>Meta</b></h5></td>
-			<td align="left"><h5><b>Indicador</b></h5></td>
-			<td align="left"></td></tr>';
-			while($row = mysqli_fetch_array($response)){
-				$fk_empresa = $row['empresa_id'];
-
-				$query2 = "SELECT * FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
-
-				$query3 = "SELECT * FROM iniciativa WHERE fk_empresa = ".$fk_empresa;
-
-				$response2 = @mysqli_query($db_connection, $query2);
-
-				$response3 = @mysqli_query($db_connection, $query3);
-
-				echo '<tr><td align="left"><a href="chart.html?emp='.$row['empresa_id'].'">' .$row['nome'].'</a></td>';
-				while($linha = mysqli_fetch_array($response2)){
-					echo '<td align="left">'.$linha['descricao']. '</td>
-					<td align="left">'.$linha['meta']. '</td>
-					<td align="left">'.$linha['indicador']. '</td>';
-				}
-				while($linha = mysqli_fetch_array($response3)){
-					echo '<td align="left">'.$linha['descricao']. '</td>';
-				}
-				echo '<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction()">Iniciativa</button></td>
-				<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction()">OBJETIVO</button></td></tr>';
-			}
-
-		}
-		else{
-			echo "Couldn't issue database query";
-			echo mysqli_error($db_connection);
-		}
-		mysqli_close($db_connection);
-
-		?>
-	</div>
-	<script>
-        function myFunction() {
-            var x = screen.width/2 - 700/2;
-            var y = screen.height/2 - 450/2;
-            var myWindow = window.open("getcadastro.php", "_blank", "height=485,width=700,left="+x+",top="+y);
-            myWindow.focus();
-        }
-    </script>
+    <table border="1">
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div id="app" class="app" draggable="true" ondragstart="drag(event)"></div>
+                </td>
+            </tr>
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+    </table>
 <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
