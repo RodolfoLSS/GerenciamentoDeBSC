@@ -33,6 +33,15 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
 
+    <script>
+        function myFunction(id) {
+            var x = screen.width/2 - 700/2;
+            var y = screen.height/2 - 450/2;
+            var myWindow = window.open("addinfo.php?id="+id, "_blank", "height=485,width=700,left="+x+",top="+y);
+            myWindow.focus();
+        }
+    </script>
+
 </head>
 
 <body id="page-top" class="index">
@@ -41,6 +50,7 @@
             <h1 class="section-heading">Empresas Cadastradas</h1>
         </div>
     </header>
+
 <section id="lista" class="bg-light-gray">
 	<div class="container">
 		<?php
@@ -76,6 +86,8 @@
 
 				$query5 = "SELECT * FROM iniciativa WHERE fk_empresa = ".$fk_empresa;
 
+                $query6 = "DELETE FROM empresa WHERE empresa_id = ".$fk_empresa;
+
 				$response2 = @mysqli_query($db_connection, $query2);
 
                 $response3 = @mysqli_query($db_connection, $query3);
@@ -110,8 +122,10 @@
 				}
                 echo '</td>';
 
-				echo '<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction('.$fk_empresa.')">Iniciativa/Objetivo</button></td>
-				<td align="left"><button class="page-scroll btn btn-p" onclick="exclude('.$fk_empresa.')">Excluir</button></td></tr>';
+				echo '<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction('.$fk_empresa.')">Iniciativa/Objetivo</button></td>';
+               
+                echo '<td align="left"><button class="page-scroll btn btn-p" onclick="delete('.$fk_empresa.')">Excluir</button></td></tr>';
+                
 			}
 
 		}
@@ -121,20 +135,8 @@
 		}
 		mysqli_close($db_connection);
 
-		?>
+	   ?>
 	</div>
-	<script>
-        function myFunction(id) {
-            var x = screen.width/2 - 700/2;
-            var y = screen.height/2 - 450/2;
-            var myWindow = window.open("addinfo.php?id="+id, "_blank", "height=485,width=700,left="+x+",top="+y);
-            myWindow.focus();
-        }
-        function exclude(id) {
-            alert("Empresa excluída!");
-            window.location.href = "getcadastro.php";
-        }
-    </script>
 <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 

@@ -1,19 +1,10 @@
 <?php
 
-    ///////////////////////////////// Iniciativa ////////////////////////////
-
-    if(empty($_POST['iniciative'])){
-        $data_missing[] = 'Iniciativas';
-    }
-    else{
-        $iniciativa = trim($_POST['iniciative']);
-    }
-
-    if(empty($_POST['emp_id'])){
+    if(empty($_POST['id'])){
         $data_missing[] = 'ID';
     }
     else{
-        $id = trim($_POST['emp_id']);
+        $id = trim($_POST['id']);
     }
 
     //////////////////////////////// Insere no banco de dados //////////////////
@@ -22,19 +13,18 @@
 
         require_once('/Library/WebServer/Documents/mysqli_connect.php');
 
-        $query_insert_iniciativa = "INSERT INTO iniciativa (descricao, fk_empresa) VALUES (?, ?)";
-
-        $stmt = mysqli_prepare($db_connection, $query_insert_iniciativa);
-        mysqli_stmt_bind_param($stmt, "si", $iniciativa, $id);
+        $query_delete_empresa = "DELETE FROM empresa WHERE empresa_id = '?'";
+        
+        $stmt = mysqli_prepare($db_connection, $query_delete_empresa);
+        mysqli_stmt_bind_param($stmt, "i", $id);
         mysqli_stmt_execute($stmt);
         $affected_rows = mysqli_stmt_affected_rows($stmt);
 
         if($affected_rows == 1){
 
-            // Cadastro realizado com sucesso
             echo '<script>';
-            echo 'alert("Iniciativa adicionada.");';
-            echo 'window.location.href = "addinfo.php";';
+            echo 'alert("Empresa deletada!");';
+            echo 'window.location.href = "getcadastro.php";';
             echo '</script>';
             mysqli_stmt_close($stmt);
             mysqli_close($db_connection);

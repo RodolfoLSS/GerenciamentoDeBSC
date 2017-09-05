@@ -38,8 +38,11 @@
 <body class="normal">
     <header>
         <div class="container">
-            <h1>Cadastro de Empresas</h1>
+            <h1>Informação adicional</h1>
         </div>
+        <?php
+            $empresa_id = $_GET["id"];
+        ?>
     </header>
 
     <!-- Edit empresa -->
@@ -62,6 +65,9 @@
                         <td>Indicador</td>
                         <td align=center><input type="text" required name="indicator"/></td>
                     </tr> 
+                    <tr> 
+                        <input type="hidden" name="emp_id" value="<?php echo $empresa_id ?>">
+                    </tr>
                     <tr>
                         <td align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Adicionar"></td>
                     </tr>
@@ -76,6 +82,9 @@
                             <input type="text" required name="iniciative"/>
                         </td>
                     </tr> 
+                    <tr> 
+                        <input type="hidden" name="emp_id" value="<?php echo $empresa_id ?>">
+                    </tr>
                     <tr>
                         <td align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Adicionar"></td>
                     </tr>
