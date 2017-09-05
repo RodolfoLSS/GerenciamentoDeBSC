@@ -45,24 +45,9 @@
     <!-- Edit empresa -->
     <section id="cadastro" class="bg-light-gray">
         <div class="container">
-            <form name="cad" action="../cadastroadded.php" method="post" id="left">
+            <form name="obj" action="../objadded.php" method="post" id="left">
                 <table> 
                     <tr>
-                        <td><h2 class="section-heading">Cadastro</h2></td>
-                    </tr>
-                    <tr> 
-                        <td>Empresa</td>
-                        <td align=center><input autofocus="autofocus" type="text" required name="name"/></td>
-                    </tr>
-                    <tr> 
-                        <td>Missão</td>
-                        <td align=center><input type="text" required name="mission"/></td>
-                    </tr>
-                    <tr> 
-                        <td>Visão</td>
-                        <td align=center><input type="text" required name="vision"/></td>
-                    </tr>
-                    <tr> 
                         <td><h3>Objetivo Estratégico</h3></td>
                     </tr>
                     <tr> 
@@ -77,34 +62,26 @@
                         <td>Indicador</td>
                         <td align=center><input type="text" required name="indicator"/></td>
                     </tr> 
+                    <tr>
+                        <td align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Adicionar"></td>
+                    </tr>
+            </form>
+            <form name="iniciativa" action="../iniciativaadded.php" method="post" id="left">
+                <table> 
                     <tr> 
                         <td><h3>Iniciativa</h3></td>
                     </tr>
                     <tr> 
                         <td>
-                            <input type="text" required name="iniciative"/><!--
-                            <input type="button" value="Adicionar" onClick="adicionar()">
-                            <div id="my_div"></div>-->
+                            <input type="text" required name="iniciative"/>
                         </td>
                     </tr> 
                     <tr>
-                        <td align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Cadastrar"></td>
-                        <td align="center">
-                            <input type="button" value="Lista de Empresas" class="page-scroll btn btn-xl" onclick="window.location.href='getcadastro.php';"/>
-                            <!--<button class="page-scroll btn btn-xl" onclick="myFunction()">Lista de Empresas</button>-->
-                        </td>
+                        <td align="center"><input type="submit" name="submit" class="page-scroll btn btn-xl" value="Adicionar"></td>
                     </tr>
                 </table>
             </form>
-            <script>
-                function myFunction() {
-                    var x = screen.width/2 - 700/2;
-                    var y = screen.height/2 - 450/2;
-                    var myWindow = window.open("getcadastro.php", "_blank", "height=485,width=700,left="+x+",top="+y);
-                    myWindow.focus();
-                }
-            </script>
-            </div>
+        </div>
     </section>
 
     <footer>

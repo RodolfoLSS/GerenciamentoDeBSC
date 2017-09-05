@@ -54,11 +54,13 @@
 		if($response){
 			echo '<table class="tLista" align="left">
 
-			<tr><td align="left"><h3><b>EMPRESA</b></h3></td>
+			<tr class="alternate"><td align="left"><h3><b>EMPRESA</b></h3></td>
 			<td colspan="3" align="left"><h3><b>OBJETIVOS ESTRATÉGICOS</b></h3></td>
-			<td align="left"><h3><b>INICIATIVAS<b></h3></td></tr>
+			<td align="left"><h3><b>INICIATIVAS<b></h3></td>
+            <td align="left"><h3></td>
+            <td align="left"><h3></td></tr>
 
-			<tr><td align="left"></td>
+			<tr class="alternate"><td align="left"></td>
 			<td align="left"><h5><b>Descrição</b></h5></td>
 			<td align="left"><h5><b>Meta</b></h5></td>
 			<td align="left"><h5><b>Indicador</b></h5></td>
@@ -66,25 +68,50 @@
 			while($row = mysqli_fetch_array($response)){
 				$fk_empresa = $row['empresa_id'];
 
-				$query2 = "SELECT * FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
+				$query2 = "SELECT descricao FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
 
-				$query3 = "SELECT * FROM iniciativa WHERE fk_empresa = ".$fk_empresa;
+                $query3 = "SELECT meta FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
+
+                $query4 = "SELECT indicador FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
+
+				$query5 = "SELECT * FROM iniciativa WHERE fk_empresa = ".$fk_empresa;
 
 				$response2 = @mysqli_query($db_connection, $query2);
 
-				$response3 = @mysqli_query($db_connection, $query3);
+                $response3 = @mysqli_query($db_connection, $query3);
 
-				echo '<tr><td align="left"><a href="chart.html?emp='.$row['empresa_id'].'">' .$row['nome'].'</a></td>';
-				while($linha = mysqli_fetch_array($response2)){
-					echo '<td align="left">'.$linha['descricao']. '</td>
-					<td align="left">'.$linha['meta']. '</td>
-					<td align="left">'.$linha['indicador']. '</td>';
+                $response4 = @mysqli_query($db_connection, $query4);
+
+				$response5 = @mysqli_query($db_connection, $query5);
+
+				echo '<tr class="alternate"><td align="left"><a href="chart.html?emp='.$row['empresa_id'].'">' .$row['nome'].'</a></td>';
+				
+                echo '<td align="left">';
+                while($linha = mysqli_fetch_array($response2)){
+                    echo $linha['descricao']. '<br>';
+                }
+                echo '</td>';
+
+                echo '<td align="left">';
+                while($linha = mysqli_fetch_array($response3)){
+                    echo $linha['meta']. '<br>';
+                }
+                echo '</td>';
+
+                echo '<td align="left">';
+                while($linha = mysqli_fetch_array($response4)){
+                    echo $linha['indicador']. '<br>';
+                }
+                echo '</td>';
+
+                echo '<td align="left">';
+				while($linha = mysqli_fetch_array($response5)){
+					echo $linha['descricao']. '<br>';
 				}
-				while($linha = mysqli_fetch_array($response3)){
-					echo '<td align="left">'.$linha['descricao']. '</td>';
-				}
-				echo '<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction()">Iniciativa</button></td>
-				<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction()">OBJETIVO</button></td></tr>';
+                echo '</td>';
+
+				echo '<td align="left"><button class="page-scroll btn btn-p" onclick="myFunction('.$fk_empresa.')">Iniciativa/Objetivo</button></td>
+				<td align="left"><button class="page-scroll btn btn-p" onclick="exclude('.$fk_empresa.')">Excluir</button></td></tr>';
 			}
 
 		}
@@ -97,11 +124,15 @@
 		?>
 	</div>
 	<script>
-        function myFunction() {
+        function myFunction(id) {
             var x = screen.width/2 - 700/2;
             var y = screen.height/2 - 450/2;
-            var myWindow = window.open("getcadastro.php", "_blank", "height=485,width=700,left="+x+",top="+y);
+            var myWindow = window.open("addinfo.php?id="+id, "_blank", "height=485,width=700,left="+x+",top="+y);
             myWindow.focus();
+        }
+        function exclude(id) {
+            alert("Empresa excluída!");
+            window.location.href = "getcadastro.php";
         }
     </script>
 <!-- jQuery -->

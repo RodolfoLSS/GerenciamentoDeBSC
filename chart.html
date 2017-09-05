@@ -37,16 +37,18 @@
             .app{
                 width: 64px;
                 height: 64px;
-                background-image: url(https://meetu.com.br/media/meetu.jpg);
                 background-size: 100% 100%;
                 border-radius: 16px;
                 box-shadow: 0px 3px 20px -10px;
                 cursor: pointer;
                 background-color: black;
             }
-
+            .noBorder{
+                border: 0;
+                width: 100px;
+            }
             td{
-                width: 400px;
+                width: 700px;
                 height: 200px;
                 position: relative;
             }
@@ -69,6 +71,8 @@
 
 </head>
 
+<!--$empresa_id = $_GET["emp"];-->
+
 <body id="page-top" class="index">
     <header>
         <div class="container">
@@ -78,17 +82,21 @@
 <section id="lista" class="bg-light-gray">
     <table border="1">
             <tr>
+                <td class="noBorder">Cumprimento da Missão</td>
                 <td ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div id="app" class="app" draggable="true" ondragstart="drag(event)"></div>
                 </td>
             </tr>
             <tr>
+                <td class="noBorder">Cliente</td>
                 <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             </tr>
             <tr>
+                <td class="noBorder">Processos Internos</td>
                 <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             </tr>
             <tr>
+                <td class="noBorder">Pessoas e Tecnologia</td>
                 <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             </tr>
     </table>
