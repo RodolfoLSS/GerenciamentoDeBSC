@@ -43,3 +43,8 @@ tr.alternate:nth-child(even) {
 tr.alternate:nth-child(odd) {
   background-color: #fff; 
 } 
+.pageCad {
+  margin: 0;
+  height: 100%;
+  background-color: #eee;
+}

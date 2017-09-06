@@ -1,10 +1,8 @@
 <?php
+    $id = $_GET["id"];
 
-    if(empty($_POST['id'])){
+    if(empty($id)){
         $data_missing[] = 'ID';
-    }
-    else{
-        $id = trim($_POST['id']);
     }
 
     //////////////////////////////// Insere no banco de dados //////////////////
@@ -13,7 +11,7 @@
 
         require_once('/Library/WebServer/Documents/mysqli_connect.php');
 
-        $query_delete_empresa = "DELETE FROM empresa WHERE empresa_id = '?'";
+        $query_delete_empresa = "DELETE FROM empresa WHERE empresa_id = ?";
         
         $stmt = mysqli_prepare($db_connection, $query_delete_empresa);
         mysqli_stmt_bind_param($stmt, "i", $id);
@@ -38,7 +36,7 @@
         echo 'Você precisa inserir os seguintes dados<br />';
             foreach($data_missing as $missing){
 
-                echo '$missing<br />';
+                echo $missing.'<br />';
             }
     }
 
