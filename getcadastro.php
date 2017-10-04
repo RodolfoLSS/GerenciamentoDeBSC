@@ -87,7 +87,7 @@
 
 				$response5 = @mysqli_query($db_connection, $query5);
 
-				echo '<tr class="alternate"><td align="left"><a href="chart.html?emp='.$row['empresa_id'].'">' .$row['nome'].'</a></td>';
+				echo '<tr class="alternate"><td align="left"><a href="chart.php?id='.$row['empresa_id'].'">' .$row['nome'].'</a></td>';
 				
                 echo '<td align="left">';
                 while($linha = mysqli_fetch_array($response2)){

@@ -34,23 +34,19 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <style>
-            .app{
-                width: 64px;
-                height: 64px;
-                background-size: 100% 100%;
-                border-radius: 16px;
-                box-shadow: 0px 3px 20px -10px;
-                cursor: pointer;
-                background-color: black;
-            }
-            .noBorder{
-                border: 0;
-                width: 100px;
-            }
             td{
-                width: 700px;
+                width: 800px;
                 height: 200px;
                 position: relative;
+            }
+            .diagrama{
+                border: 5px solid black;
+            }
+            div{
+                overflow-x: auto;
+            }
+            .items td{
+                height: 100%;
             }
         </style>
         <script>
@@ -79,24 +75,78 @@
             <h1 class="section-heading">Diagrama</h1>
         </div>
     </header>
+<div id="lista" class="bg-light-gray">
+    <?php
+
+        require_once('/Library/WebServer/Documents/mysqli_connect.php');
+
+        $fk_empresa = $_GET["id"];
+
+        $query2 = "SELECT descricao FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
+
+        $query3 = "SELECT meta FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
+
+        $query4 = "SELECT indicador FROM objetivo_estrategico WHERE fk_empresa = ".$fk_empresa;
+
+        $query5 = "SELECT * FROM iniciativa WHERE fk_empresa = ".$fk_empresa;
+
+        $response2 = @mysqli_query($db_connection, $query2);
+
+        $response3 = @mysqli_query($db_connection, $query3);
+
+        $response4 = @mysqli_query($db_connection, $query4);
+
+        $response5 = @mysqli_query($db_connection, $query5);
+
+        $count = 0;
+
+        echo '<table class="items" align="left" border="0">
+
+        <tr><td align="left">';
+        while($linha = mysqli_fetch_array($response2)){
+            echo '<p class="page-scroll btn btn-p" id="drag'.$count.'" draggable="true" ondragstart="drag(event)">'.$linha['descricao']. '</p><br>';
+            $count = $count + 1;
+        }
+        echo '</td>';
+
+        echo '<td align="left">';
+        while($linha = mysqli_fetch_array($response3)){
+            echo '<p class="page-scroll btn btn-p" id="drag'.$count.'" draggable="true" ondragstart="drag(event)">'.$linha['meta']. '</p><br>';
+            $count = $count + 1;
+        }
+        echo '</td>';
+
+        echo '<td align="left">';
+        while($linha = mysqli_fetch_array($response4)){
+            echo '<p class="page-scroll btn btn-p" id="drag'.$count.'" draggable="true" ondragstart="drag(event)">'.$linha['indicador']. '</p><br>';
+            $count = $count + 1;
+        }
+        echo '</td>';
+
+        echo '<td align="left">';
+        while($linha = mysqli_fetch_array($response5)){
+            echo '<p class="page-scroll btn btn-p" id="drag'.$count.'" draggable="true" ondragstart="drag(event)">'.$linha['descricao']. '</p><br>';
+            $count = $count + 1;
+        }
+        echo '</td></tr></table>';
+    ?>
+</div>
 <section id="lista" class="bg-light-gray">
-    <table border="1">
+    <table class="diagrama" border="1">
             <tr>
-                <td class="noBorder">Cumprimento da Missão</td>
-                <td ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <div id="app" class="app" draggable="true" ondragstart="drag(event)"></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noBorder">Cliente</td>
+                <td class="noBorder"><p class="page-scroll btn btn-p">Financeiro</p></td>
                 <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             </tr>
             <tr>
-                <td class="noBorder">Processos Internos</td>
+                <td class="noBorder"><p class="page-scroll btn btn-p">Cliente</p></td>
                 <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             </tr>
             <tr>
-                <td class="noBorder">Pessoas e Tecnologia</td>
+                <td class="noBorder"><p class="page-scroll btn btn-p">Processos Internos</p></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="noBorder"><p class="page-scroll btn btn-p">Pessoas e Tecnologia</p></td>
                 <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             </tr>
     </table>
